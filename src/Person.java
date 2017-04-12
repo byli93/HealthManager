@@ -5,14 +5,15 @@ public class Person {
 	public String username;
 	public String password;
 
-	public Person(int id, String username, String password){
-		this.id = id;
+	public Person(String username, String password){
+//	public Person(int id, String username, String password){
+//		this.id = id;
 		this.username = username;
 		this.password = password;
 	}
-	public int getId(){
-		return id;
-	}
+//	public int getId(){
+//		return id;
+//	}
 	public String getName(){
 		return username;
 	}
