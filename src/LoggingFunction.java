@@ -6,7 +6,7 @@ public class LoggingFunction {
 	// get activity and food
 	// save to date
 	//stay in same screen after submit log, add button
-	public static void log(Date date , Activities[][] activities){ // activities is an 2D array containing activity performed and intensity
+	public static void log(Date date , int[] activities){ // activities is an array containing intensity, each activity is in order to its order number
 		//store the info under the specified date
 		
 	}
