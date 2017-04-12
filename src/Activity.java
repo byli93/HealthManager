@@ -1,5 +1,6 @@
 
 public enum Activity {
+	TEA(0,0.2),
 	SOFTDRINK (1,-1),
 	MILK (2,0.2),
 	WATER (3,0.1),
