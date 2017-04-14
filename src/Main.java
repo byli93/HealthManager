@@ -40,7 +40,7 @@ public class Main extends JPanel {
 	        logscreen.setBounds(500, 300, 900, 600);
 	        
 
-	        JXDatePicker picker = new JXDatePicker();
+	        JXDatePicker picker = new JXDatePicker();	//calendar
 	        picker.setDate(Calendar.getInstance().getTime());
 	        picker.setFormats(new SimpleDateFormat("dd.MM.yyyy"));
 	        
@@ -63,7 +63,7 @@ public class Main extends JPanel {
 //	        	
 //	        }
 	        
-	        logP.setLayout(new GridLayout(10,1,3,3));
+	        logP.setLayout(new GridLayout(10,3,3,3));
 	        panel.add(picker);		//calender button
 	        panel.add(dateSelect);	// select button
 	        frame.getContentPane().add(panel);
@@ -84,9 +84,11 @@ public class Main extends JPanel {
 	        		for(int i =0;i<28;i++){
 	    	        	activities[i] = intBoxArray[i].getSelectedIndex();
 	    	        }
-	        		System.out.println(Arrays.toString(activities));
+	        		//System.out.println(Arrays.toString(activities));
 	        		//activities = savedActivity; //make for loop to fill in intensity of activities into this int array
+	        		logfunction.log(dateSelected, activities);
 	        		logscreen.setVisible(false);
+	        		
 	        	}
 	        	
 	        });
