@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import org.jdesktop.swingx.JXDatePicker;
 
 
@@ -22,6 +24,7 @@ public class Main extends JPanel {
 	        JFrame logscreen = new JFrame("Activity tracker");
 	        JPanel logP = new JPanel();
 	        LoggingFunction logfunction = new LoggingFunction();
+	        String[] intensityLv = {"0","1","2","3","4","5","6","7","8","9","10"};
 
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setBounds(500, 300, 300, 150);
@@ -34,11 +37,14 @@ public class Main extends JPanel {
 	        
 	        JButton dateSelect = new JButton("Select");
 	        JButton saveLog = new JButton("Submit");
+	        JComboBox intensityBox = new JComboBox(intensityLv);
 	        
-	        panel.add(picker);
-	        panel.add(dateSelect);
+	        panel.add(picker);		//calender button
+	        panel.add(dateSelect);	// select button
 	        frame.getContentPane().add(panel);
-	        logP.add(saveLog);
+	        logP.add(saveLog);		//submit button
+	        logP.add(intensityBox);
+	        logscreen.getContentPane().add(logP);
 	        dateSelect.addActionListener(new ActionListener(){
 	            public void actionPerformed(ActionEvent e){
 	              //System.out.println(picker.getDate());
@@ -50,7 +56,8 @@ public class Main extends JPanel {
 	          });
 	        saveLog.addActionListener(new ActionListener(){
 	        	public void actionPerformed(ActionEvent e){
-	        		activities = savedActivity; //make for loop to fill in intensity of activities into this int array
+	        		System.out.println(intensityBox.getSelectedItem());
+	        		//activities = savedActivity; //make for loop to fill in intensity of activities into this int array
 	        		logscreen.setVisible(false);
 	        	}
 	        	
