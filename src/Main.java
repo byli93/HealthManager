@@ -1,3 +1,4 @@
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -10,7 +11,8 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -36,6 +38,7 @@ public class Main extends JPanel {
 	        frame.setBounds(500, 300, 300, 150);
 	        logscreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        logscreen.setBounds(500, 300, 900, 600);
+	        
 
 	        JXDatePicker picker = new JXDatePicker();
 	        picker.setDate(Calendar.getInstance().getTime());
@@ -43,18 +46,24 @@ public class Main extends JPanel {
 	        
 	        JButton dateSelect = new JButton("Select");
 	        JButton saveLog = new JButton("Submit");
-	        JTextField[] actTxtArray = new JTextField[28];
-	        for(int j = 0; j<actTxtArray.length;j++){
-	        	actTxtArray[j] = new JTextField(actList.get(j).toString());
-	        	logP.add(actTxtArray[j]);
-	        }
+	        JTextArea[] actTxtArray = new JTextArea[28];
 	        JComboBox[] intBoxArray = new JComboBox[28];
-	        for(int i =0;i<intBoxArray.length;i++){
-	        	intBoxArray[i]= new JComboBox(intensityLv);
-	        	logP.add(intBoxArray[i]);
+	        for(int j = 0; j<actTxtArray.length;j++){
+	        	actTxtArray[j] = new JTextArea(actList.get(j).toString(),2,10);
+	        	actTxtArray[j].setEditable(false);
+	        	actTxtArray[j].setBackground(null);
+	        	//actTxtArray[j].setAlignmentX(LEFT_ALIGNMENT);
+	        	logP.add(actTxtArray[j]);
+	        	intBoxArray[j]= new JComboBox(intensityLv);
+	        	//intBoxArray[j].setAlignmentX(RIGHT_ALIGNMENT);
+	        	logP.add(intBoxArray[j]);
 	        }
 	        
+//	        for(int i =0;i<intBoxArray.length;i++){
+//	        	
+//	        }
 	        
+	        logP.setLayout(new GridLayout(10,1,3,3));
 	        panel.add(picker);		//calender button
 	        panel.add(dateSelect);	// select button
 	        frame.getContentPane().add(panel);
