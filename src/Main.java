@@ -1,12 +1,16 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.EnumSet;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -26,6 +30,7 @@ public class Main extends JPanel {
 	        JPanel logP = new JPanel();
 	        LoggingFunction logfunction = new LoggingFunction();
 	        String[] intensityLv = {"0","1","2","3","4","5","6","7","8","9","10"};
+	        List<Activity> actList = new ArrayList<Activity>(EnumSet.allOf(Activity.class));
 
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setBounds(500, 300, 300, 150);
@@ -38,8 +43,13 @@ public class Main extends JPanel {
 	        
 	        JButton dateSelect = new JButton("Select");
 	        JButton saveLog = new JButton("Submit");
+	        JTextField[] actTxtArray = new JTextField[28];
+	        for(int j = 0; j<actTxtArray.length;j++){
+	        	actTxtArray[j] = new JTextField(actList.get(j).toString());
+	        	logP.add(actTxtArray[j]);
+	        }
 	        JComboBox[] intBoxArray = new JComboBox[28];
-	        for(int i =0;i<28;i++){
+	        for(int i =0;i<intBoxArray.length;i++){
 	        	intBoxArray[i]= new JComboBox(intensityLv);
 	        	logP.add(intBoxArray[i]);
 	        }
@@ -53,7 +63,7 @@ public class Main extends JPanel {
 	        logscreen.getContentPane().add(logP);
 	        dateSelect.addActionListener(new ActionListener(){
 	            public void actionPerformed(ActionEvent e){
-	              //System.out.println(picker.getDate());
+	              //System.out.println(actList.toString());
 	            	
 	            	logscreen.setVisible(true);
 	            	activities = new int[28];
