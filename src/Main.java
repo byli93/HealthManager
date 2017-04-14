@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class Main extends JPanel {
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setBounds(500, 300, 300, 150);
 	        logscreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	        logscreen.setBounds(500, 300, 600, 400);
+	        logscreen.setBounds(500, 300, 900, 600);
 
 	        JXDatePicker picker = new JXDatePicker();
 	        picker.setDate(Calendar.getInstance().getTime());
@@ -37,13 +38,18 @@ public class Main extends JPanel {
 	        
 	        JButton dateSelect = new JButton("Select");
 	        JButton saveLog = new JButton("Submit");
-	        JComboBox intensityBox = new JComboBox(intensityLv);
+	        JComboBox[] intBoxArray = new JComboBox[28];
+	        for(int i =0;i<28;i++){
+	        	intBoxArray[i]= new JComboBox(intensityLv);
+	        	logP.add(intBoxArray[i]);
+	        }
+	        
 	        
 	        panel.add(picker);		//calender button
 	        panel.add(dateSelect);	// select button
 	        frame.getContentPane().add(panel);
 	        logP.add(saveLog);		//submit button
-	        logP.add(intensityBox);
+	        //logP.add(intBox);
 	        logscreen.getContentPane().add(logP);
 	        dateSelect.addActionListener(new ActionListener(){
 	            public void actionPerformed(ActionEvent e){
@@ -56,7 +62,10 @@ public class Main extends JPanel {
 	          });
 	        saveLog.addActionListener(new ActionListener(){
 	        	public void actionPerformed(ActionEvent e){
-	        		System.out.println(intensityBox.getSelectedItem());
+	        		for(int i =0;i<28;i++){
+	    	        	activities[i] = intBoxArray[i].getSelectedIndex();
+	    	        }
+	        		System.out.println(Arrays.toString(activities));
 	        		//activities = savedActivity; //make for loop to fill in intensity of activities into this int array
 	        		logscreen.setVisible(false);
 	        	}
