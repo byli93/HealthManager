@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
@@ -12,7 +11,6 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -64,7 +62,7 @@ public class Main extends JPanel {
 //	        }
 	        
 	        logP.setLayout(new GridLayout(10,3,3,3));
-	        panel.add(picker);		//calender button
+	        panel.add(picker);		//Calendar button
 	        panel.add(dateSelect);	// select button
 	        frame.getContentPane().add(panel);
 	        logP.add(saveLog);		//submit button
@@ -72,7 +70,7 @@ public class Main extends JPanel {
 	        logscreen.getContentPane().add(logP);
 	        dateSelect.addActionListener(new ActionListener(){
 	            public void actionPerformed(ActionEvent e){
-	              //System.out.println(actList.toString());
+	              //System.out.println(picker.getDate().toString().substring(0, 10));
 	            	
 	            	logscreen.setVisible(true);
 	            	activities = new int[28];
