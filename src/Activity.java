@@ -35,7 +35,10 @@ public enum Activity {
 			this.order = order;
 			this.rating = rating;
 	}
-	/*private double rating(){
+	public double rating(){
 		return rating;
-	}*/
+	}
+	public int order(){
+		return order;
+	}
 }

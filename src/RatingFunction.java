@@ -16,22 +16,29 @@ public class RatingFunction {
 	public void rating(String[] dates){
 		List<Activity> actList = new ArrayList<Activity>(EnumSet.allOf(Activity.class));
 		String line;
-		int[] intensity = new int[28];
+		double[] dailyscores = new double[dates.length];
 		for(int i=0;i<dates.length;i++){
 			String path = "./" + dates[i]; 
 			Path file = Paths.get(path);
+			double[] scores = new double[28];
+			double dayscore = 0;
 			try {
 				List<String> lines = Files.readAllLines(file);
 				line = lines.toString();
 				line = line.substring(0, line.length() -1);
 				String[] intense = line.split(",");
 				for(int j=0;j<line.length();j++){
-					intensity[j] = Integer.parseUnsignedInt(intense[j]);
+					scores[j] = Integer.parseUnsignedInt(intense[j]) * actList.get(j).rating();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			for(int k =0;k<scores.length;k++){
+				dayscore += scores[k];
+			}
+			dailyscores[i] = dayscore;
+			dayscore = 0;
 		}
 		
 	}
