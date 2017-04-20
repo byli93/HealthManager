@@ -28,7 +28,10 @@ public class Main extends JPanel {
 	        JPanel panel = new JPanel();
 	        JFrame logscreen = new JFrame("Activity tracker");
 	        JPanel logP = new JPanel();
+	        JFrame ratescreen = new JFrame("Your rating");
+	        JPanel rateP = new JPanel();
 	        LoggingFunction logfunction = new LoggingFunction();
+	        RatingFunction rate = new RatingFunction();
 	        String[] intensityLv = {"0","1","2","3","4","5","6","7","8","9","10"};
 	        List<Activity> actList = new ArrayList<Activity>(EnumSet.allOf(Activity.class));
 
@@ -36,6 +39,9 @@ public class Main extends JPanel {
 	        frame.setBounds(500, 300, 300, 150);
 	        logscreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        logscreen.setBounds(500, 300, 900, 600);
+	        ratescreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	        ratescreen.setBounds(500, 300, 500, 350);
+	        
 	        
 
 	        JXDatePicker picker = new JXDatePicker();	//calendar
