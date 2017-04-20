@@ -75,7 +75,7 @@ public class Main extends JPanel {
 	        frame.getContentPane().add(panel);
 	        logP.add(saveLog);		//submit button
 	        //logP.add(intBox);
-	        
+	        rateP.add(rating);
 	        logscreen.getContentPane().add(logP);
 	        ratescreen.getContentPane().add(rateP);
 	        dateSelect.addActionListener(new ActionListener(){
@@ -119,8 +119,8 @@ public class Main extends JPanel {
 	        			week[j] = dates[j].toString().substring(0, 10);
 	        		}
 	        		
-	        		double result = ratefunction.rating(week);
-	        		rating.setText(Double.toString(result));
+	        		String result = ratefunction.rating(week);
+	        		rating.setText(result);
 	        		ratescreen.setVisible(true);
 	        	}
 	        	

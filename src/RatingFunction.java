@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class RatingFunction {
 	// do general calculation for rating
 	// if consume cheat meals more than once this week -18 points
 	// if went to gym at least 4 times +10, +2 extra ,each time after 4
-	public double rating(String[] dates){
+	public String rating(String[] dates){
 		List<Activity> actList = new ArrayList<Activity>(EnumSet.allOf(Activity.class));
 		String line;
 		double[] dailyscores = new double[dates.length];
@@ -37,7 +38,10 @@ public class RatingFunction {
 						cheatmeals += 1;
 					}
 				}
-			} catch (IOException e) {
+			} catch(NoSuchFileException e){
+				return "Log for" + dates[i] + "not found";
+			}catch (IOException e) {
+			
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -60,7 +64,7 @@ public class RatingFunction {
 				finalscore += (gym-4)*2;
 			}
 		}
-		return finalscore;
+		return "Your score is" + Double.toString(finalscore);
 	}
 
 	
