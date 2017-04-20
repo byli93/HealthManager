@@ -31,7 +31,7 @@ public class Main extends JPanel {
 	        JFrame ratescreen = new JFrame("Your rating");
 	        JPanel rateP = new JPanel();
 	        LoggingFunction logfunction = new LoggingFunction();
-	        RatingFunction rate = new RatingFunction();
+	        RatingFunction ratefunction = new RatingFunction();
 	        String[] intensityLv = {"0","1","2","3","4","5","6","7","8","9","10"};
 	        List<Activity> actList = new ArrayList<Activity>(EnumSet.allOf(Activity.class));
 
@@ -49,6 +49,7 @@ public class Main extends JPanel {
 	        picker.setFormats(new SimpleDateFormat("dd.MM.yyyy"));
 	        
 	        JButton dateSelect = new JButton("Select");
+	        JButton rate = new JButton("Rate");
 	        JButton saveLog = new JButton("Submit");
 	        JTextArea[] actTxtArray = new JTextArea[28];
 	        JComboBox[] intBoxArray = new JComboBox[28];
@@ -62,7 +63,7 @@ public class Main extends JPanel {
 	        	//intBoxArray[j].setAlignmentX(RIGHT_ALIGNMENT);
 	        	logP.add(intBoxArray[j]);
 	        }
-	        
+	        JTextArea rating = new JTextArea("");
 //	        for(int i =0;i<intBoxArray.length;i++){
 //	        	
 //	        }
@@ -70,10 +71,13 @@ public class Main extends JPanel {
 	        logP.setLayout(new GridLayout(10,3,3,3));
 	        panel.add(picker);		//Calendar button
 	        panel.add(dateSelect);	// select button
+	        panel.add(rate);
 	        frame.getContentPane().add(panel);
 	        logP.add(saveLog);		//submit button
 	        //logP.add(intBox);
+	        
 	        logscreen.getContentPane().add(logP);
+	        ratescreen.getContentPane().add(rateP);
 	        dateSelect.addActionListener(new ActionListener(){
 	            public void actionPerformed(ActionEvent e){
 	              //System.out.println(picker.getDate().toString().substring(0, 10));
@@ -96,6 +100,32 @@ public class Main extends JPanel {
 	        	}
 	        	
 	        });
+	        rate.addActionListener(new ActionListener(){
+	        	public void actionPerformed(ActionEvent e){
+	        		// pick 1 day and evaluate the next 6 days together as a week
+	        		dateSelected = picker.getDate();
+	        		Date[] dates = new Date[7];
+	        		String[] week = new String[7];
+	        		dates[0] = dateSelected;
+	        		Calendar c = Calendar.getInstance();
+	        		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+	        		for(int i =1;i<7;i++){
+	        			c.setTime(dates[i-1]);
+	        			c.add(Calendar.DATE, 1);
+	        			dates[i] = c.getTime();
+	        			
+	        		}
+	        		for(int j =0;j<7;j++){
+	        			week[j] = dates[j].toString().substring(0, 10);
+	        		}
+	        		
+	        		double result = ratefunction.rating(week);
+	        		rating.setText(Double.toString(result));
+	        		ratescreen.setVisible(true);
+	        	}
+	        	
+	        });
+	        
 	        frame.setVisible(true);
 	    }
 
