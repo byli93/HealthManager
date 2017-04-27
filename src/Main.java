@@ -42,7 +42,6 @@ public class Main extends JPanel {
 	        ratescreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        ratescreen.setBounds(500, 300, 500, 350);
 	        
-	        
 
 	        JXDatePicker picker = new JXDatePicker();	//calendar
 	        picker.setDate(Calendar.getInstance().getTime());
